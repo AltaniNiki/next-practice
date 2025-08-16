@@ -1,0 +1,13 @@
+{
+   "Home": {
+      "cta": "Let's start"
+   },
+   "Products": {
+      "products": "Products"
+   },
+   "Menu": {
+      "products": "Προιόντα",
+      "categories": "Κατηγορίες",
+      "home": "Αρχική"
+   }
+}
