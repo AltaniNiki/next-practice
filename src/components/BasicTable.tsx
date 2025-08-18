@@ -50,7 +50,6 @@ export default function BasicTable({ headers, data, page, perPage, onPageChange,
                             {headers.map((h: HeaderProps) => {
                                 return (
                                     <TableCell key={'id_' + d.id + '_' + h.key}>
-                                        {'id_' + d.id + '_' + h.key}
                                         {d[h.key]}
                                     </TableCell>
                                 )
