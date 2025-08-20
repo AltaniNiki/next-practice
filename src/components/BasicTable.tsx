@@ -19,16 +19,15 @@ type HeaderProps = {
 
 
 type BasicTableProps = {
-    headers: HeaderProps;
+    headers: HeaderProps[];
     data: Record<string, any>[];
     page?: number;
     perPage?: number;
-    onPageChange?: void,
-    onRowsPerPageChange?: void
+    onPageChange?: (newPage: number) => void,
+    onRowsPerPageChange?: (event: unknown) => void
 };
 
-export default function BasicTable({ headers, data, page, perPage, onPageChange, onRowsPerPageChange }): BasicTableProps {
-
+export default function BasicTable({ headers, data, page, perPage, onPageChange, onRowsPerPageChange }: BasicTableProps) {
     const optionsList = [5, 10, 30, 50]
     return (
         <TableContainer component={Paper}>
@@ -68,7 +67,7 @@ export default function BasicTable({ headers, data, page, perPage, onPageChange,
                             }}
                             rowsPerPageOptions={optionsList}
                             onRowsPerPageChange={(event) => {
-                                console.log(event.target.value)
+
                                 onRowsPerPageChange(event.target.value)
                             }}
 

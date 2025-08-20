@@ -3,6 +3,7 @@ import * as React from "react";
 import Grid from "@mui/material/Grid"
 import BasicTable from "@/components/BasicTable";
 import axios from "axios"
+import { usePage } from "@/context/PageContext"
 
 
 export default function Products() {
@@ -40,30 +41,37 @@ export default function Products() {
     const [data, setData] = React.useState([])
 
 
-    const [perPage, setPerPage] = React.useState(10)
+    const [perPage, setPerPage] = React.useState(5)
     const [page, setPage] = React.useState(0)
+    const { setCurrentPage, currentPage } = usePage();
 
     const onPageChange = (pageValue: number) => {
         setPage(pageValue)
     }
 
-    const onRowsPerPageChange = (value: number) => {
+    const onRowsPerPageChange = async (value: number) => {
         setPerPage(value)
     }
 
     React.useEffect(() => {
         fetchData();
+        setCurrentPage("Products");
     }, [])
+
+
+    React.useEffect(() => {
+        fetchData();
+    }, [perPage, page])
 
     const fetchData = async () => {
         try {
-            const resp = await axios.get(`https://dummyjson.com/products?limit=10&skip=10`)
+            const resp = await axios.get(`https://dummyjson.com/products?limit=${perPage}&skip=${perPage * page}`)
             setData(resp?.data?.products)
         } catch (e) {
             throw e;
         }
-
     }
+
     return (
         <Grid container spacing={2}>
             <Grid size={12}>

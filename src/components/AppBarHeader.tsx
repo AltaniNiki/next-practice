@@ -5,12 +5,15 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
+import { usePage } from "@/context/PageContext";
 
 export default function AppBarHeader({
     onMenuClick
 }: {
     onMenuClick: () => void;
 }) {
+
+    const { currentPage } = usePage();
     return (
         <AppBar position="fixed" sx={{ zIndex: (t) => t.zIndex.drawer + 1 }}>
             <Toolbar>
@@ -24,7 +27,7 @@ export default function AppBarHeader({
                 </IconButton>
 
                 <Typography variant="h6" noWrap>
-                    Dashboard
+                    {currentPage}
                 </Typography>
             </Toolbar>
         </AppBar>
